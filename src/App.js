@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Movie from "./components/Movie";
-import MovieInfo from "./components/MovieInfo";
+import MovieComponent from "./components/MovieComponent";
+import MovieInfoComponent from "./components/MovieInfoComponent";
 import axios from "axios";
 
-const API_KEY = "42f28d8";
+export const API_KEY = "42f28d8";
 
 const Container = styled.div`
   display: flex;
@@ -96,17 +96,22 @@ function App() {
           />
         </SearchBox>
       </Header>
-      {selectedMovie && <MovieInfo selectedMovie={selectedMovie} />}
+      {selectedMovie && (
+        <MovieInfoComponent
+          selectedMovie={selectedMovie}
+          onMovieSelect={setSelectedMovie}
+        />
+      )}
       <MovieListContainer>
         {movieList?.length
           ? movieList.map((movie, index) => (
-              <Movie
+              <MovieComponent
                 key={index}
                 movie={movie}
                 onMovieSelect={setSelectedMovie}
               />
             ))
-          : "No movies found"}
+          : "Search any movie"}
       </MovieListContainer>
     </Container>
   );
