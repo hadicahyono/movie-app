@@ -37,10 +37,10 @@ const MovieInfo = styled.span`
   color: black;
   text-transform: capitalize;
 `;
-const MovieComponent = (props) => {
+const Movie = (props) => {
   const { Title, Year, imdbID, Type, Poster } = props.movie;
   return (
-    <MovieContainer>
+    <MovieContainer onClick={() => props.onMovieSelect(imdbID)}>
       <CoverImage src={Poster} />
       <MovieTitle>{Title}</MovieTitle>
       <InfoColumn>
@@ -51,4 +51,4 @@ const MovieComponent = (props) => {
   );
 };
 
-export default MovieComponent;
+export default Movie;
